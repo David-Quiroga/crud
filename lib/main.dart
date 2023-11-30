@@ -1,4 +1,5 @@
 import 'package:crud/src/page/list_page.dart';
+import 'package:crud/src/page/save_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       routes: {
-        ListPage.ROUTE: (_) => ListPage()
+        ListPage.ROUTE: (_) => ListPage(),
+        SavePage.ROUTE: (_) => SavePage()
       },  
     );
   }
