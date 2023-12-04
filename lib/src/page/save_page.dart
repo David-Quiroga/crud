@@ -1,4 +1,3 @@
-//import 'dart:html';
 import 'package:flutter/material.dart';
 
 class SavePage extends StatelessWidget {
@@ -20,17 +19,29 @@ class SavePage extends StatelessWidget {
 }
 
 class _FormSave extends StatelessWidget{
+  final _formKey =  GlobalKey<FormState>();
+  final titleController = TextEditingController();
+  final contentController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20),
       child: Form(
+        key: _formKey,
         child: Column(
           children: <Widget>[
             Divider(height: 30),
             TextFormField(
+            controller: titleController,
+              validator: (value) {
+                  if(value!.isEmpty){
+                    return "El campo no puede estar vacio";
+                  } 
+                  return null;
+                },
               decoration: InputDecoration(
                 labelText: "Titulo",
+
                 border: OutlineInputBorder(
                   //borderRadius: BorderRadius.all(Radius.circular(30))
                   )
@@ -41,6 +52,7 @@ class _FormSave extends StatelessWidget{
               ),
               TextFormField(
                 //!Agregar mas propiedades
+                controller: contentController,
                 maxLines: 15,
                 maxLength: 200,
                 validator: (value) {
@@ -54,6 +66,14 @@ class _FormSave extends StatelessWidget{
                   border: OutlineInputBorder(
                   ) 
                 ),
+              ),
+              ElevatedButton(
+                child: Text("Guardar"),
+                onPressed: (() {
+                  if(_formKey.currentState!.validate()){
+                    print("Guardar");
+                  }
+                }),
               )
           ],
         )
